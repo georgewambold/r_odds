@@ -11,10 +11,9 @@ describe 'generic odd conversion' do
 
   odds_conversion_table.each do |equivalent_odds|
     equivalent_odds.each do |odd_type, odd|
-      generic_odd = ROdds.create_odd(odd)
       equivalent_odds.each do |type_to_check, odd_to_check|
         it "converts #{odd} (#{odd_type}) to => #{odd_to_check} (#{type_to_check})" do
-          expect(generic_odd.send("as_#{type_to_check}").to_s).to eq(equivalent_odds[type_to_check])
+          expect(ROdds.convert(odd, to: type_to_check)).to eq(equivalent_odds[type_to_check])
         end
       end
     end
