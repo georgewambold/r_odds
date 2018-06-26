@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["George Wambold"]
   spec.email         = ["georgewambold@gmail.com"]
 
-  spec.summary       = %q{Easy to work with odd conversions}
+  spec.summary       = %q{Simple odds conversions -- Written in Ruby!}
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
