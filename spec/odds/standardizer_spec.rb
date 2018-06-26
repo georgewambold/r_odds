@@ -1,17 +1,31 @@
 require 'spec_helper'
 
 describe ROdds::Odd::Standardizer do
-  it 'takes an odd as a string and returns an odd value object' do
-    odd = 'some_odd'
-    allow(ROdds::InferOddFormat).to receive(:of).with(odd: odd)
-      .and_return(:some_format)
-    standardized_odd = double('standardized_odd')
-    some_standardizer = double('standardizer', call: standardized_odd)
-    allow(ROdds::OddStandardizer::ClassFactory).to receive(:for).with(format: :some_format)
-      .and_return(some_standardizer)
+  it 'can infer the format of an odd and standardize it' do
+    decimal_odd = '1.25'
 
-    result = ROdds::Odd::Standardizer.call(odd: odd)
+    standardized_odd = ROdds::Odd::Standardizer.call(odd: decimal_odd)
 
-    expect(result).to eq(standardized_odd)
+    expect(standardized_odd).to be_an_instance_of(ROdds::Odd::Decimal)
+  end
+
+  it 'maintains the value of the odd' do
+    decimal_odd = '1.25'
+
+    standardized_odd = ROdds::Odd::Standardizer.call(odd: decimal_odd)
+
+    expect(standardized_odd.to_s).to eq('1.25')
+  end
+
+  it 'can also have the format of the odd specified' do
+    non_descript_odd = '1/2'
+    format = :implied_probability
+
+    standardized_odd = ROdds::Odd::Standardizer.call(
+      odd: non_descript_odd,
+      format: format
+    )
+
+    expect(standardized_odd).to be_an_instance_of(ROdds::Odd::ImpliedProbability)
   end
 end

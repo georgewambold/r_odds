@@ -11,32 +11,19 @@ module ROdds
       end
 
       def call
-        derived_class = derive_conversion_class
-
-        if derived_class.nil?
-          raise ArgumentError, "No known conversion class to get from format :#{from}, to format :#{to}"
-        else
-          derived_class
+        begin
+          Object.const_get("ROdds::OddConverter::#{capitalize(from)}To#{capitalize(to)}")
+        rescue NameError
+          raise ArgumentError,
+            "No known conversion class to get from format :#{from}, to format :#{to}"
         end
       end
 
       private
       attr_reader :from, :to
 
-      def derive_conversion_class
-        case to
-        when :implied_probability
-          case from
-          when :fractional
-            ROdds::OddConverter::FractionalToImpliedProbability
-          when :american
-            ROdds::OddConverter::AmericanToImpliedProbability
-          when :implied_probability
-            ROdds::OddConverter::ImpliedProbabilityToImpliedProbability
-          when :decimal
-            ROdds::OddConverter::DecimalToImpliedProbability
-          end
-        end
+      def capitalize(symbol)
+        symbol.to_s.split('_').map(&:capitalize).join
       end
     end
   end

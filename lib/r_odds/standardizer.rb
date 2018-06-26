@@ -8,7 +8,7 @@ module ROdds
 
       def initialize(params)
         @raw_odd    = params[:odd]
-        @odd_format = ROdds::InferOddFormat.of(odd: raw_odd)
+        @odd_format = params[:format] || ROdds::InferOddFormat.of(odd: raw_odd)
       end
 
       def call
