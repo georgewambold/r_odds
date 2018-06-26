@@ -1,38 +1,45 @@
-# ROdds
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/r_odds`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
+# Installing r_odds
 
 Add this line to your application's Gemfile:
 
 ```ruby
 gem 'r_odds'
 ```
+or
+```
+$ gem install r_odds
+```
+then
+```
+require 'r_odds'
+```
 
-And then execute:
+## How to use the gem
+Use the `:convert` method to convert between any of the following formats: `:american`, `:decimal`, `:fractional` or `:implied probability`
 
-    $ bundle
+```ruby
+ROdds.convert('+150', to: :decimal)
+#=> 2.50
+```
 
-Or install it yourself as:
+```ruby
+ROdds.convert('25%', to: :american)
+#=> +300
+```
+You can also specify the format you're passing in for ambiguous formats like `'1/2'` (which could be an implied probability or a fractional odd).
 
-    $ gem install r_odds
+```ruby
+ROdds.convert('1/4', to: :decimal)
+#=> 1.25
 
-## Usage
+ROdds.convert('1/4', from: :probability, to: :american)
+#=> +300
+```
 
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/r_odds. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/georgewambold/r_odds. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
