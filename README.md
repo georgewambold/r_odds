@@ -15,7 +15,7 @@ require 'r_odds'
 ```
 
 ## How to use the gem
-Use the `:convert` method to convert between any of the following formats: `:american`, `:decimal`, `:fractional` or `:implied probability`
+Use the `:convert` method to convert between any of the following formats: `:american`, `:decimal`, `:fractional` or `:implied_probability`
 
 ```ruby
 ROdds.convert('+150', to: :decimal)
@@ -32,7 +32,7 @@ You can also specify the format you're passing in for ambiguous formats like `'1
 ROdds.convert('1/4', to: :decimal)
 #=> 1.25
 
-ROdds.convert('1/4', from: :probability, to: :american)
+ROdds.convert('1/4', from: :implied_probability, to: :american)
 #=> +300
 ```
 
