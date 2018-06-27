@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    r_odds (0.1.0)
+    r_odds (0.1.2)
 
 GEM
   remote: https://rubygems.org/
