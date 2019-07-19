@@ -46,4 +46,13 @@ describe ROdds::OddStandardizer::Fractional do
     expect(ROdds::Odd::Fractional).to have_received(:new)
       .with(numerator: 4, denominator: 3)
   end
+
+  it "can handle fractional odds with the '-' format" do
+    allow(ROdds::Odd::Fractional).to receive(:new)
+
+    standardized_odd = ROdds::OddStandardizer::Fractional.call(odd: '4-3')
+
+    expect(ROdds::Odd::Fractional).to have_received(:new)
+      .with(numerator: 4, denominator: 3)
+  end
 end
