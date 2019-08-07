@@ -29,6 +29,24 @@ describe ROdds::OddStandardizer::Fractional do
       .with(numerator: 1, denominator: 2)
   end
 
+  it 'can handle decmial points in numerator' do
+    allow(ROdds::Odd::Fractional).to receive(:new)
+
+    standardized_odd = ROdds::OddStandardizer::Fractional.call(odd: '1.5-1')
+
+    expect(ROdds::Odd::Fractional).to have_received(:new)
+      .with(numerator: 3, denominator: 2)
+  end
+
+  it 'can handle decmial points in the denominator' do
+    allow(ROdds::Odd::Fractional).to receive(:new)
+
+    standardized_odd = ROdds::OddStandardizer::Fractional.call(odd: '2.5-1.5')
+
+    expect(ROdds::Odd::Fractional).to have_received(:new)
+      .with(numerator: 5, denominator: 3)
+  end
+
   it "can handle fractional odds with the 'to' format" do
     allow(ROdds::Odd::Fractional).to receive(:new)
 
