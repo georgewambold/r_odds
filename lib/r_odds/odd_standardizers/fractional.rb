@@ -1,7 +1,8 @@
 module ROdds
   module OddStandardizer
     class Fractional
-      NUMERATOR_AND_DENOMINATOR = /(?<numerator>\d+)(\D*)(?<denominator>\d+)/
+      NUMERATOR_AND_DENOMINATOR =
+        /(?<numerator>\d+\.?\d*)(\D*)(?<denominator>\d+\.?\d*)/
 
       def self.call(params)
         new(params).call
