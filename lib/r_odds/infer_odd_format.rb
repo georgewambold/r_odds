@@ -13,7 +13,7 @@ module ROdds
       case odd
       when /^(?:[1-9]\d*)+(\/|:)(?:[1-9]\d*)+$/
         :fractional
-      when /^[+-][1-9]\d{2,}\.?\d*$/
+      when /^[+-]?[1-9]\d{2,}\.?\d*$/
         :american
       when /\d*.?\d++%/
         :implied_probability
